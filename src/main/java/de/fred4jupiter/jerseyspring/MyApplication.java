@@ -1,7 +1,7 @@
 package de.fred4jupiter.jerseyspring;
 
 import de.fred4jupiter.jerseyspring.provider.CustomExceptionMapper;
-import de.fred4jupiter.jerseyspring.rest.GreetingResource;
+import de.fred4jupiter.jerseyspring.provider.JsonMoxyConfigurationContextResolver;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
@@ -16,8 +16,9 @@ public class MyApplication extends ResourceConfig {
     public MyApplication() {
         register(RequestContextFilter.class);
 
-        register(GreetingResource.class);
+        packages(true, "de.fred4jupiter.jerseyspring.rest");
 
         register(CustomExceptionMapper.class);
+        //register(JsonMoxyConfigurationContextResolver.class);
     }
 }
