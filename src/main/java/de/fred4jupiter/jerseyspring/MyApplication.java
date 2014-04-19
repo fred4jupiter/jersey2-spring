@@ -1,7 +1,6 @@
 package de.fred4jupiter.jerseyspring;
 
 import de.fred4jupiter.jerseyspring.provider.CustomExceptionMapper;
-import de.fred4jupiter.jerseyspring.provider.JsonMoxyConfigurationContextResolver;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
 
@@ -20,5 +19,12 @@ public class MyApplication extends ResourceConfig {
 
         register(CustomExceptionMapper.class);
         //register(JsonMoxyConfigurationContextResolver.class);
+
+//        property(CommonProperties.MOXY_JSON_FEATURE_DISABLE, true);
+//        property(CommonProperties.JSON_PROCESSING_FEATURE_DISABLE, true);
+//        property(CommonProperties.FEATURE_AUTO_DISCOVERY_DISABLE, true);
+//
+//        property(CommonProperties.METAINF_SERVICES_LOOKUP_DISABLE, true);
+//        property(ServerProperties.METAINF_SERVICES_LOOKUP_DISABLE, true);
     }
 }
