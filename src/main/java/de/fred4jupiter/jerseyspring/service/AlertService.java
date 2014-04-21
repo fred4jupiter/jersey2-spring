@@ -42,4 +42,24 @@ public class AlertService {
 
         return userAlerts;
     }
+
+    public void subscribe(String alertId, String user) {
+        Assert.notNull(alertId);
+        Assert.notNull(user);
+        for (Alert alert : alerts) {
+            if (alert.getId().equals(alertId)) {
+                alert.setOwner(user);
+            }
+        }
+    }
+
+    public Alert getAlertById(String alertId) {
+        Assert.notNull(alertId);
+        for (Alert alert : alerts) {
+            if (alert.getId().equals(alertId)) {
+                return alert;
+            }
+        }
+        return null;
+    }
 }
