@@ -30,6 +30,15 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.1.4.v20140401</version>
             </plugin>
+            <!-- run: mvn clean compile exec:java -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>de.fred4jupiter.jerseyspring.App</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -58,12 +67,10 @@
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish.jersey.ext</groupId>
             <artifactId>jersey-spring3</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
@@ -71,6 +78,10 @@
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
         </dependency>
 
         <!-- Spring 3 dependencies -->
@@ -108,6 +119,7 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>1.7.7</version>
         </dependency>
+
 
         <!-- Testing dependencies -->
         <dependency>

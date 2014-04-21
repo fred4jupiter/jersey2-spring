@@ -11,18 +11,21 @@ public class Alert {
 
     private String description;
 
+    private String owner;
+
     public Alert() {
 
     }
 
     public Alert(String title) {
-        this(title, null);
-    }
-
-    public Alert(String title, String description) {
         this.id = UUID.randomUUID().toString();
         this.title = title;
-        this.description = description;
+    }
+
+    public Alert(String title, String owner) {
+        this.id = UUID.randomUUID().toString();
+        this.title = title;
+        this.owner = owner;
     }
 
     public String getId() {
@@ -47,5 +50,13 @@ public class Alert {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 }
