@@ -27,8 +27,6 @@ public class AlertResource {
     @Path("alerts")
     @GET
     public List<Alert> listAlerts() {
-
-
         return alertService.findAllAlerts();
     }
 
