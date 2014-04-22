@@ -51,6 +51,7 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+
             <!--<dependency>-->
                 <!--<groupId>org.springframework</groupId>-->
                 <!--<artifactId>spring-framework-bom</artifactId>-->
@@ -62,6 +63,7 @@
     </dependencyManagement>
 
     <dependencies>
+
         <!-- Jersey -->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
@@ -78,10 +80,6 @@
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-moxy</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-grizzly2-http</artifactId>
         </dependency>
 
         <!-- Spring 3 dependencies -->
@@ -120,7 +118,6 @@
             <version>1.7.7</version>
         </dependency>
 
-
         <!-- Testing dependencies -->
         <dependency>
             <groupId>junit</groupId>
@@ -129,10 +126,28 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-bundle</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
         </dependency>
     </dependencies>
 

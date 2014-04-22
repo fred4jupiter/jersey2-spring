@@ -29,7 +29,7 @@ public class MyApplication extends ResourceConfig {
 
         // Providers - JSON.
         register(MoxyJsonFeature.class);
-        register(JsonConfiguration.class);
+
 
 //        register(MoxyXmlFeature.class);
 //        register(MoxyFilteringFeature.class);
