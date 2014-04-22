@@ -1,4 +1,4 @@
-package de.fred4jupiter.jerseyspring.provider;
+package de.fred4jupiter.jerseyspring.rest.provider;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -13,7 +13,7 @@ import javax.ws.rs.ext.Provider;
 public class CustomExceptionMapper implements ExceptionMapper<IllegalArgumentException> {
 
     @Override
-    public Response toResponse(IllegalArgumentException exception) {
-        return Response.ok("Illegal Argument Exception Caught").build();
+    public Response toResponse(IllegalArgumentException e) {
+        return Response.status(Response.Status.BAD_REQUEST).entity("IllegalArgumentException: "+e.getMessage()).build();
     }
 }

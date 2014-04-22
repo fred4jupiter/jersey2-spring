@@ -49,27 +49,8 @@ public class AlertResource {
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Alert updateAlert(Alert alert) {
         return alert;
-    }
-
-    @Path("alert/{id}/subscribe")
-    @PUT
-    public Response subscripeAlert(@PathParam("id") String alertId, @QueryParam("user") String username) {
-        Assert.notNull(alertId);
-        Assert.notNull(username);
-        alertService.subscribe(alertId, username);
-        return Response.ok().build();
-    }
-
-    @Path("alert/{id}/unsubscribe")
-    @DELETE
-    public Response unsubscripeAlert(@PathParam("id") String alertId, @QueryParam("user") String username) {
-        Assert.notNull(alertId);
-        Assert.notNull(username);
-        alertService.subscribe(alertId, username);
-        return Response.ok().build();
     }
 }

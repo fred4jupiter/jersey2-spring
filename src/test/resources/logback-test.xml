@@ -10,6 +10,10 @@
 		<level value="WARN" />
 	</logger>
 
+    <logger name="org.glassfish.jersey">
+        <level value="DEBUG" />
+    </logger>
+
 	<logger name="de.fred4jupiter.jerseyspring">
 		<level value="DEBUG" />
 	</logger>
