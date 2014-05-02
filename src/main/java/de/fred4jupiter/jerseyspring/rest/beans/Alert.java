@@ -14,12 +14,11 @@ public class Alert {
     private String owner;
 
     public Alert() {
-
+        // needed for mashalling/unmarshalling
     }
 
     public Alert(String title) {
-        this.id = UUID.randomUUID().toString();
-        this.title = title;
+        this(title, null);
     }
 
     public Alert(String title, String owner) {

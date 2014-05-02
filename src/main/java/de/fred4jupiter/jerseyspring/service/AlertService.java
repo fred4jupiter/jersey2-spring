@@ -11,22 +11,22 @@ import java.util.List;
 @Service
 public class AlertService {
 
-    private final List<Alert> alerts;
+    private final DemoDataPopulator demoDataPopulator;
 
     @Autowired
     public AlertService(DemoDataPopulator demoDataPopulator) {
-        this.alerts = demoDataPopulator.getAlerts();
+        this.demoDataPopulator = demoDataPopulator;
     }
 
     public List<Alert> findAllAlerts() {
-        return alerts;
+        return demoDataPopulator.getAlerts();
     }
 
     public List<Alert> findAlertsOfUser(String user) {
         Assert.notNull(user);
         List<Alert> userAlerts = new ArrayList<>();
 
-        for (Alert alert : alerts) {
+        for (Alert alert : findAllAlerts()) {
             String owner = alert.getOwner();
             if (owner != null && owner.equals(user)) {
                 userAlerts.add(alert);
@@ -38,7 +38,7 @@ public class AlertService {
 
     public Alert getAlertById(String alertId) {
         Assert.notNull(alertId);
-        for (Alert alert : alerts) {
+        for (Alert alert : findAllAlerts()) {
             if (alert.getId().equals(alertId)) {
                 return alert;
             }

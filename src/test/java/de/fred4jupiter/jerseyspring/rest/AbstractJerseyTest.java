@@ -15,7 +15,7 @@ public abstract class AbstractJerseyTest extends JerseyTest {
     protected Application configure() {
         MyApplication myApplication = new MyApplication();
         myApplication.property("contextConfigLocation", "classpath:/applicationContext.xml");
-        myApplication.register(SpringComponentProvider.class);
+        myApplication.register(this);
         return myApplication;
     }
 

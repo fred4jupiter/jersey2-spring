@@ -8,12 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.ws.rs.core.Response;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
-public class AlertResourceTest extends AbstractSpringJerseyIntegrationTest {
+public class AlertResourceTest extends AbstractJerseyTest {
 
     @Autowired
     private DemoDataPopulator demoDataPopulator;
+
+    @Test
+    public void checkInjectingDependencies() {
+        assertNotNull(demoDataPopulator);
+    }
 
     @Test
     public void listAlerts() {
