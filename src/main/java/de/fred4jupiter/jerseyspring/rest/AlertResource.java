@@ -2,6 +2,7 @@ package de.fred4jupiter.jerseyspring.rest;
 
 import de.fred4jupiter.jerseyspring.rest.beans.Alert;
 import de.fred4jupiter.jerseyspring.service.AlertService;
+import de.fred4jupiter.jerseyspring.service.AlertServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
