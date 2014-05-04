@@ -1,6 +1,8 @@
 package de.fred4jupiter.jerseyspring.service;
 
 import de.fred4jupiter.jerseyspring.rest.beans.Alert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -9,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AlertServiceImpl implements AlertService{
+public class AlertServiceImpl implements AlertService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AlertServiceImpl.class);
 
     private final DemoDataPopulator demoDataPopulator;
 
@@ -47,5 +51,30 @@ public class AlertServiceImpl implements AlertService{
             }
         }
         return null;
+    }
+
+    @Override
+    public void delete(String alertId) {
+        Assert.notNull(alertId);
+        LOG.info("deleted alert with id: " + alertId);
+        // TODO: implement correctly
+    }
+
+    @Override
+    public void update(Alert alert) {
+        Assert.notNull(alert);
+        List<Alert> allAlerts = findAllAlerts();
+        for (Alert tmpAlert : allAlerts) {
+            if (tmpAlert.getId().equals(alert.getId())) {
+                tmpAlert.setTitle(alert.getTitle());
+                tmpAlert.setDescription(alert.getDescription());
+                tmpAlert.setOwner(alert.getOwner());
+            }
+        }
+    }
+
+    @Override
+    public void add(Alert alert) {
+        findAllAlerts().add(alert);
     }
 }

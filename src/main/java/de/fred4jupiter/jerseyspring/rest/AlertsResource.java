@@ -12,8 +12,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 
 @Component
@@ -22,13 +22,16 @@ import java.util.List;
 @Scope("request")
 public class AlertsResource {
 
+    @Context
+    private UriInfo uriInfo;
+
     @Autowired
     private AlertService alertService;
 
     @GET
     public Response listAlerts() {
-        List<Alert> alerts = alertService.findAllAlerts();
-        return Response.ok(new Alerts(alerts)).build();
+        URI uri = uriInfo.getRequestUriBuilder().build();
+        return Response.ok(new Alerts(alertService.findAllAlerts())).link(uri, "self").build();
     }
 
     @Path("{user}")

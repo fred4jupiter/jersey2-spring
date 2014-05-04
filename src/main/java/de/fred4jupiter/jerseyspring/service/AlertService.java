@@ -12,4 +12,10 @@ public interface AlertService {
     List<Alert> findAlertsOfUser(String user);
 
     Alert getAlertById(String alertId);
+
+    void delete(String alertId);
+
+    void update(Alert alert);
+
+    void add(Alert alert);
 }

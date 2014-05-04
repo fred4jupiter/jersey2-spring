@@ -1,6 +1,7 @@
 package de.fred4jupiter.jerseyspring.rest;
 
 import de.fred4jupiter.jerseyspring.rest.beans.Alert;
+import de.fred4jupiter.jerseyspring.rest.beans.Alerts;
 import de.fred4jupiter.jerseyspring.service.AlertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -8,7 +9,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 
 @Component
@@ -23,20 +27,40 @@ public class AlertResource {
     @Autowired
     private AlertService alertService;
 
-    @Path("{alertId}")
     @GET
-    public Response getAlertById(@PathParam("alertId") String alertId) {
+    @Path("list")
+    public Response list() {
+        URI uri = uriInfo.getRequestUriBuilder().build();
+        return Response.ok(new Alerts(alertService.findAllAlerts())).link(uri, "self").build();
+    }
+
+    @GET
+    @Path("{id}")
+    public Response read(@PathParam("id") String alertId) {
         Assert.notNull(alertId);
         Alert alert = alertService.getAlertById(alertId);
-        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder();
-        URI uri = uriBuilder.path(alertId).build();
-
-        return Response.ok(alert).link(uri, "self").build();
+        return Response.ok(alert).build();
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateAlert(Alert alert) {
+    public Response create(Alert alert) {
+        alertService.add(alert);
         return Response.ok(alert).build();
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(Alert alert) {
+        alertService.update(alert);
+        return Response.ok(alert).build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response delete(@PathParam("id") String alertId) {
+        alertService.delete(alertId);
+        return Response.ok(alertId).build();
+    }
+
 }
