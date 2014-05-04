@@ -9,10 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.net.URI;
 
 @Component
@@ -31,8 +28,12 @@ public class AlertResource {
     @GET
     @Path("list")
     public Response list() {
+        return Response.ok(new Alerts(alertService.findAllAlerts())).links(createSelfLink()).build();
+    }
+
+    private Link createSelfLink() {
         URI uri = uriInfo.getRequestUriBuilder().build();
-        return Response.ok(new Alerts(alertService.findAllAlerts())).link(uri, "self").build();
+        return Link.fromUri(uri).rel("self").build();
     }
 
     @GET
@@ -40,7 +41,7 @@ public class AlertResource {
     public Response read(@PathParam("id") String alertId) {
         Assert.notNull(alertId);
         Alert alert = alertService.getAlertById(alertId);
-        return Response.ok(alert).build();
+        return Response.ok(alert).links(createSelfLink()).build();
     }
 
     @POST

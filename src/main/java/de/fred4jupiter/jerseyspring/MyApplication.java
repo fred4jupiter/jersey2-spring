@@ -1,7 +1,6 @@
 package de.fred4jupiter.jerseyspring;
 
 import de.fred4jupiter.jerseyspring.rest.AlertResource;
-import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
@@ -21,7 +20,6 @@ public class MyApplication extends ResourceConfig {
 
         // Providers - JSON.
         register(MoxyJsonFeature.class);
-        register(DeclarativeLinkingFeature.class);
 
 //        property(CommonProperties.MOXY_JSON_FEATURE_DISABLE, true);
 //        property(CommonProperties.JSON_PROCESSING_FEATURE_DISABLE, true);

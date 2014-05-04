@@ -1,24 +1,10 @@
 package de.fred4jupiter.jerseyspring.rest.beans;
 
-import de.fred4jupiter.jerseyspring.rest.AlertResource;
-import org.glassfish.jersey.linking.InjectLink;
-import org.glassfish.jersey.linking.InjectLinks;
-
-import javax.ws.rs.core.Link;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.List;
 import java.util.UUID;
 
 @XmlRootElement
 public class Alert {
-
-    @InjectLinks({
-            @InjectLink(resource = AlertResource.class, rel = "self", method = "read"),
-            @InjectLink(resource = AlertResource.class, rel = "edit", method = "update"),
-            @InjectLink(resource = AlertResource.class, rel = "delete", method = "delete"),
-            @InjectLink(resource = AlertResource.class, rel = "list", method = "list")
-    })
-    private List<Link> links;
 
     private String id;
 

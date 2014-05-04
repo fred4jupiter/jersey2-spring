@@ -42,6 +42,9 @@ public class AlertResourceTest extends AbstractJerseyTest {
         Alert alert = demoDataPopulator.getAlerts().get(0);
         Response response = target().path("alert/{alertId}").resolveTemplate("alertId", alert.getId()).request().get();
         assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
+        Link self = response.getLink("self");
+        assertNotNull(self);
+        assertThat(self.getUri().toString(), equalTo("http://localhost:9998/alert/"+alert.getId()));
     }
 
     @Test
