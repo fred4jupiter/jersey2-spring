@@ -18,6 +18,7 @@ import java.net.URI;
 @Component
 @Path("/alert")
 @Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @Scope("request")
 public class AlertResource {
 
@@ -43,14 +44,12 @@ public class AlertResource {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Alert alert) {
         alertService.add(alert);
         return Response.ok(alert).build();
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
     public Response update(Alert alert) {
         alertService.update(alert);
         return Response.ok(alert).build();
