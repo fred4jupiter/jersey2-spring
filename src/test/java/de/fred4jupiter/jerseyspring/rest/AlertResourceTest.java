@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.ws.rs.core.Response;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 public class AlertResourceTest extends AbstractJerseyTest {
 
@@ -18,12 +19,6 @@ public class AlertResourceTest extends AbstractJerseyTest {
     @Test
     public void checkInjectingDependencies() {
         assertNotNull(demoDataPopulator);
-    }
-
-    @Test
-    public void listAlerts() {
-        Response response = target().path("alerts").request().get();
-        assertThat(response.getStatus(), equalTo(Response.Status.OK.getStatusCode()));
     }
 
     @Test

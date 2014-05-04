@@ -5,7 +5,6 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.test.JerseyTest;
 import org.glassfish.jersey.test.TestProperties;
-import org.springframework.test.context.ActiveProfiles;
 
 import javax.ws.rs.core.Application;
 
