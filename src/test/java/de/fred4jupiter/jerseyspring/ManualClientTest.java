@@ -1,7 +1,6 @@
 package de.fred4jupiter.jerseyspring;
 
 import de.fred4jupiter.jerseyspring.rest.filter.AuthClientRequestFilter;
-import de.fred4jupiter.jerseyspring.rest.filter.AuthClientResponseFilter;
 import de.fred4jupiter.jerseyspring.service.AuthTokenHolder;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
-
 import java.util.UUID;
 
 import static org.junit.Assert.assertNotNull;
