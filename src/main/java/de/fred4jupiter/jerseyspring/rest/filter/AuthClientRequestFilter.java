@@ -1,5 +1,6 @@
 package de.fred4jupiter.jerseyspring.rest.filter;
 
+import de.fred4jupiter.jerseyspring.service.AuthTokenHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,9 @@ public class AuthClientRequestFilter implements ClientRequestFilter {
         LOG.debug("filter: request coming in. called URL: {}", requestContext.getUri());
 
         MultivaluedMap<String, Object> headers = requestContext.getHeaders();
-        headers.add(HttpHeaders.COOKIE, new Cookie("authkey", "12345"));
+
+        String authToken = AuthTokenHolder.getInstance().getAuthToken();
+        LOG.debug("filter: fetched token={}", authToken);
+        headers.add(HttpHeaders.COOKIE, new Cookie("authkey", authToken));
     }
 }

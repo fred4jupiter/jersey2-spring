@@ -2,9 +2,7 @@ package de.fred4jupiter.jerseyspring.rest;
 
 import de.fred4jupiter.jerseyspring.rest.filter.AuthClientRequestFilter;
 import de.fred4jupiter.jerseyspring.rest.filter.AuthClientResponseFilter;
-import de.fred4jupiter.jerseyspring.rest.filter.AuthenticationFilter;
 import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.filter.LoggingFilter;
 import org.junit.Test;
 
 import javax.ws.rs.core.Response;
