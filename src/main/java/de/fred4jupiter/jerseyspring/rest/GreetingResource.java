@@ -1,17 +1,18 @@
 package de.fred4jupiter.jerseyspring.rest;
 
 import de.fred4jupiter.jerseyspring.service.GreetingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
+import javax.ws.rs.CookieParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.container.ResourceContext;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 /**
  * Call this URL for example
@@ -25,18 +26,17 @@ import javax.ws.rs.core.UriInfo;
 @Scope("request")
 public class GreetingResource {
 
-    @Context
-    private ResourceContext resourceContext;
-
-    @Context
-    private UriInfo uriInfo;
+    private static final Logger LOG = LoggerFactory.getLogger(GreetingResource.class);
 
     @Autowired
     private GreetingService greetingService;
 
     @GET
     @Path("/greeting/{username}")
-    public Response savePayment(@PathParam("username") String username) {
-        return Response.status(200).entity(greetingService.greeting(username)).build();
+    public Response greeting(@PathParam("username") String username, @CookieParam("authkey") String authkey) {
+        LOG.debug("greeting: username={}, authkey={}", username, authkey);
+        Assert.notNull(username, "username should not be null");
+        Assert.notNull(authkey, "authkey should not be null");
+        return Response.ok(greetingService.greeting(username)).build();
     }
 }
