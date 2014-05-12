@@ -9,9 +9,10 @@ import javax.ws.rs.client.ClientRequestFilter;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
-
+@Provider
 public class AuthClientRequestFilter implements ClientRequestFilter {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthClientRequestFilter.class);

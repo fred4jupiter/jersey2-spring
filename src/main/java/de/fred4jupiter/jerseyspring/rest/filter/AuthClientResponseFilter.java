@@ -7,11 +7,13 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientResponseContext;
 import javax.ws.rs.client.ClientResponseFilter;
+import javax.ws.rs.ext.Provider;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
+@Provider
 public class AuthClientResponseFilter implements ClientResponseFilter {
 
     private static final Logger LOG = LoggerFactory.getLogger(AuthClientResponseFilter.class);

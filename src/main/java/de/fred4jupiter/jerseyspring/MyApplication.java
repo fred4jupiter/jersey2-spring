@@ -1,6 +1,7 @@
 package de.fred4jupiter.jerseyspring;
 
-import de.fred4jupiter.jerseyspring.rest.AlertResource;
+import de.fred4jupiter.jerseyspring.rest.AlertsResource;
+import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.spring.scope.RequestContextFilter;
@@ -16,10 +17,11 @@ public class MyApplication extends ResourceConfig {
     public MyApplication() {
         register(RequestContextFilter.class);
 
-        packages(true, AlertResource.class.getPackage().getName());
+        packages(true, AlertsResource.class.getPackage().getName());
 
         // Providers - JSON.
         register(MoxyJsonFeature.class);
+        register(LoggingFilter.class);
 
 //        property(CommonProperties.MOXY_JSON_FEATURE_DISABLE, true);
 //        property(CommonProperties.JSON_PROCESSING_FEATURE_DISABLE, true);

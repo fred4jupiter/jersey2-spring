@@ -8,13 +8,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
-import java.util.List;
 
 @Component
 @Path("/alerts")
@@ -29,16 +25,39 @@ public class AlertsResource {
     private AlertService alertService;
 
     @GET
-    public Response listAlerts() {
-        URI uri = uriInfo.getRequestUriBuilder().build();
-        return Response.ok(new Alerts(alertService.findAllAlerts())).link(uri, "self").build();
+    public Response list() {
+        return Response.ok(new Alerts(alertService.findAllAlerts())).links(createSelfLink()).build();
     }
 
-    @Path("{user}")
+    private Link createSelfLink() {
+        URI uri = uriInfo.getRequestUriBuilder().build();
+        return Link.fromUri(uri).rel("self").build();
+    }
+
     @GET
-    public Response listAlertsOfUser(@PathParam("user") String user) {
-        Assert.notNull(user);
-        List<Alert> alerts = alertService.findAlertsOfUser(user);
-        return Response.ok(new Alerts(alerts)).build();
+    @Path("{id}")
+    public Response read(@PathParam("id") String alertId) {
+        Assert.notNull(alertId);
+        Alert alert = alertService.getAlertById(alertId);
+        return Response.ok(alert).links(createSelfLink()).build();
+    }
+
+    @POST
+    public Response create(Alert alert) {
+        alertService.add(alert);
+        return Response.ok(alert).build();
+    }
+
+    @PUT
+    public Response update(Alert alert) {
+        alertService.update(alert);
+        return Response.ok(alert).build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response delete(@PathParam("id") String alertId) {
+        alertService.delete(alertId);
+        return Response.ok(alertId).build();
     }
 }
