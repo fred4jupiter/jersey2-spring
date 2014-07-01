@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class AlertServiceTest {
 
     @Autowired
-    private AlertServiceImpl alertService;
+    private AlertService alertService;
 
     @Test
     public void findAllAlerts() {

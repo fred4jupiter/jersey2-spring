@@ -15,6 +15,7 @@ public class MyApplication extends ResourceConfig {
      * Note: You only have to register resources, providers that are not located in specified packages.
      */
     public MyApplication() {
+        // registering spring bridge adapter...
         register(RequestContextFilter.class);
 
         packages(true, AlertsResource.class.getPackage().getName());
