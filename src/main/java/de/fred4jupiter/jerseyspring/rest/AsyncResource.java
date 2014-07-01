@@ -1,35 +1,32 @@
 package de.fred4jupiter.jerseyspring.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Executors;
 
 @Path("/async")
 public class AsyncResource {
 
+    @Autowired
+    private TaskExecutor taskExecutor;
+
     @GET
     public void asyncGet(@Suspended final AsyncResponse asyncResponse) {
+        taskExecutor.execute(new Runnable() {
 
-//        Executors.newSingleThreadExecutor().submit(new Callable() {
-//
-//            @Override
-//            public Object call() throws Exception {
-//                return null;
-//            }
-//        });
-        new Thread(new Runnable() {
             @Override
             public void run() {
                 String result = veryExpensiveOperation();
                 asyncResponse.resume(result);
             }
+        });
+    }
 
-            private String veryExpensiveOperation() {
-                return "Hello".toUpperCase();
-            }
-        }).start();
+    private String veryExpensiveOperation() {
+        return "Hello".toUpperCase();
     }
 }
