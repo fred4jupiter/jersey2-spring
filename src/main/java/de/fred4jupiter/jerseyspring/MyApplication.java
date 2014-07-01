@@ -24,6 +24,7 @@ public class MyApplication extends ResourceConfig {
         register(MoxyJsonFeature.class);
         register(LoggingFilter.class);
 
+
 //        property(CommonProperties.MOXY_JSON_FEATURE_DISABLE, true);
 //        property(CommonProperties.JSON_PROCESSING_FEATURE_DISABLE, true);
 //        property(CommonProperties.FEATURE_AUTO_DISCOVERY_DISABLE, true);
