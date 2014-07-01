@@ -17,13 +17,13 @@ import javax.ws.rs.core.Response;
 /**
  * Call this URL for example
  * <p/>
- * <a href="http://localhost:8080/greeting/michael">http://localhost:8080/greeting/michael</a>
+ * <a href="http://localhost:8080/greeting/michael">http://localhost:8080/greeting/michael</a>.
+ * <p/>
+ * <p>Note: Jersey REST beans are created by Jersey. The bean itself is no spring bean. Only the autowiring takes place.</p>
  *
  * @author eqpoh
  */
-@Component
 @Path("/")
-@Scope("request")
 public class GreetingResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(GreetingResource.class);

@@ -4,42 +4,35 @@ import de.fred4jupiter.jerseyspring.rest.beans.Alert;
 import de.fred4jupiter.jerseyspring.rest.beans.Alerts;
 import de.fred4jupiter.jerseyspring.service.AlertService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 
-@Component
 @Path("/alerts")
 @Produces(MediaType.APPLICATION_JSON)
-@Scope("request")
 public class AlertsResource {
-
-    @Context
-    private UriInfo uriInfo;
 
     @Autowired
     private AlertService alertService;
 
     @GET
-    public Response list() {
-        return Response.ok(new Alerts(alertService.findAllAlerts())).links(createSelfLink()).build();
+    public Response list(@Context UriInfo uriInfo) {
+        return Response.ok(new Alerts(alertService.findAllAlerts())).links(createSelfLink(uriInfo)).build();
     }
 
-    private Link createSelfLink() {
+    private Link createSelfLink(UriInfo uriInfo) {
         URI uri = uriInfo.getRequestUriBuilder().build();
         return Link.fromUri(uri).rel("self").build();
     }
 
     @GET
     @Path("{id}")
-    public Response read(@PathParam("id") String alertId) {
+    public Response read(@Context UriInfo uriInfo, @PathParam("id") String alertId) {
         Assert.notNull(alertId);
         Alert alert = alertService.getAlertById(alertId);
-        return Response.ok(alert).links(createSelfLink()).build();
+        return Response.ok(alert).links(createSelfLink(uriInfo)).build();
     }
 
     @POST
