@@ -11,20 +11,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class ApplicationContextUtils implements ApplicationContextAware {
 
-    private static ApplicationContext applicationContext;
+	private static ApplicationContext applicationContext;
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
+	@Override
+	public void setApplicationContext(ApplicationContext appContext) throws BeansException {
+		applicationContext = appContext;
+	}
 
-    public static ApplicationContext getApplicationContext() {
-        if (applicationContext == null) {
-            String msg = "The applicationContext is not yet available. " +
-                    "Please ensure that the spring applicationContext is completly created before calling this method!";
-            throw new IllegalStateException(msg);
-        }
+	public static ApplicationContext getApplicationContext() {
+		if (applicationContext == null) {
+			String msg = "The applicationContext is not yet available. "
+					+ "Please ensure that the spring applicationContext is completly created before calling this method!";
+			throw new IllegalStateException(msg);
+		}
 
-        return applicationContext;
-    }
+		return applicationContext;
+	}
 }
